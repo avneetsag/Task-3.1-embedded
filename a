@@ -1,0 +1,22 @@
+int led = D7;
+int ledSensor = A0;
+int outValue = 0;// The on-board LED
+
+void setup() 
+{
+  pinMode(led, OUTPUT);
+  pinMode(lightSensor, INPUT);
+}
+
+void loop() 
+{
+    outValue = analogRead(lightSensor);
+    digitalWrite(led, HIGH);   // Turn ON the LED
+
+  String Intensity = String(outValue);
+  Particle.publish("light_intensity", Intensity, PRIVATE);
+  delay(20000);               
+
+  digitalWrite(led, LOW);    
+  delay(5000);               
+}
